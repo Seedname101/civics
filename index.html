@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html> 
+ <head>
+    <title>How a Bill Becomes a Law</title> 
+</head>
+ <body>
+ <h1 align = "center"></h1>
+    <p align="center"> 
+      <canvas id="mycanvas"></canvas> 
+    </p>
+ </body>
+ 
+ <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script> 
+ 
+ <script>
+    var sketchProc = function(processingInstance) {
+     with (processingInstance) {
+        size(600, 600); 
+        frameRate(60);
+       //My project for Mr. Barthe's class. Enjoy! Oh, and if you made it this far, sorry for the sloppy code. It's 5:20AM right now.
+
+/** Credits: https://kids-clerk.house.gov/grade-school/lesson.html?intID=17 (I paraphrased information) and Mr.Barthe's Class **/
+
+var scene = 0;
+var language = "";
+var f = createFont("Impact");
+var b1r;
+var b1g;
+var b1b;
+var b2r;
+var b2g;
+var b2b;
+var b3r;
+var b3g;
+var b3b;
+var clickt = 0;
+var clickt2 = 0;
+var timer = 0;
+var timer2 = 0;
+var currentScene;
+var bright = 100;
+var line1 = 100;
+    var drawButton = function() {
+    fill(81, 166, 31);
+    rect(width-75, height-height+10, 50, 25);
+
+    textAlign(CENTER, CENTER);
+    if(language === "English"){
+    fill(255, 255, 255);
+    textSize(17);
+    text("NEXT", width-75+25.5, height-height+22.5);
+    
+    }
+if(language  === "Spanish"){
+     textSize(14);
+    fill(255, 255, 255);
+    text("Próximo", width-75+25.5, height-height+22.5);
+}
+if(language === "French"){
+    textSize(14);
+    fill(255, 255, 255);
+    text("Prochain", width-75+25.5, height-height+22.5);
+}
+};
+var drawScene1 = function() {
+    currentScene = 1;
+    background(235, 247, 255);
+    fill(0, 0, 0);
+    textSize(39);
+    textAlign(CENTER, CENTER);
+    if(language === "English"){
+    text("It all starts with an idea.", width/2, height/2-100);
+    }
+    if(language === "Spanish"){
+text("Todo comienza con una idea.", width/2, height/2-100);
+    }
+    if(language === "French"){
+text("Tout commence par une idée.", width/2, height/2-100);
+    }
+    
+    fill(128, 128, 128);
+    rect(width/2-75/2, height/2-75/2+175, 75, 75, 10);
+    fill(255, 255, 84, bright);
+    ellipse(width/2, height/2+50, 175, 200);
+    fill(0, 0, 0);
+    line(width/2-line1, height/2-line1+109, width/2-100, height/2+5);
+    line(width/2+line1, height/2-line1+109, width/2+100, height/2+5);
+    
+    line(width/2+line1, height/2+line1-9, width/2+100, height/2+105);
+    line(width/2-line1, height/2+line1-9, width/2-100, height/2+105);
+    
+ 
+};
+
+var drawScene2 = function() {
+    currentScene = 2;
+ background(84, 193, 217);
+ fill(0, 0, 0);
+    if(language === "English"){
+    textSize(39);
+    text("The  ideas can come from a \nrepresentative, or from a citizen,\nlike you! If you have an idea for a\nbill, you can contact a your\nrepresentative and convince them\nto take action.", width/2, height/2);
+    }
+    if(language === "Spanish"){
+          textSize(39);
+    text("¡Las ideas pueden provenir de un \nrepresentante, o de un ciudadano, \ncomo usted! Si tiene una idea para \nun proyecto de ley, puede ponerse en \ncontacto con un representante y\n convencerlo para que tome medidas.", width/2, height/2);
+        
+    }
+if(language === "French"){
+    textSize(39);
+    text("Les idées peuvent venir d'un \nreprésentant ou d'un citoyen comme \nvous! Si vous avez une idée de projet \nde loi, vous pouvez contacter un de \nvos représentants et le convaincre\n d'agir.", width/2, height/2);
+        
+    }
+};
+var drawScene3 = function(){
+    currentScene = 3;
+  background(84, 193, 217);
+    fill(0, 0, 0);
+    ellipse(width/2, height-130, 50, 50);
+    line(width/2+0, height+-105, width/2+0, height-40);
+    line(width/2+-23, height-2, width/2+0, height-40);
+    line(width/2+23, height-2, width/2+0, height-40);
+    line(width/2+-29, height+-108, width/2+0, height-80);
+    line(width/2+29, height+-62, width/2+0, height-80);
+    //new person
+    ellipse(width/2+150, height-130, 50, 50);
+    line(width/2+0+150, height+-105, width/2+0+150, height-40);
+    line(width/2+-23+150, height-2, width/2+0+150, height-40);
+    line(width/2+23+150, height-2, width/2+0+150, height-40);
+    line(width/2+-29+150, height+-108, width/2+0+150, height-80);
+    line(width/2+29+150, height+-62, width/2+0+150, height-80);
+    //new person
+        ellipse(width/2-150, height-130, 50, 50);
+    line(width/2-150+1, height+-105, width/2+0-150, height-40);
+    line(width/2+-23-150, height-2, width/2+0-150, height-40);
+    line(width/2+23-150, height-2, width/2+0-150, height-40);
+    line(width/2+-29-150, height+-62, width/2+0-150, height-80);
+    line(width/2+29-150, height+-62, width/2+0-150, height-80);
+    fill(0, 0, 0);
+    if(language === "English"){
+    textSize(39);
+    text("The bill is then sent to a committee\nthat deals with the same branch\nthe bill was introduced in, as well as\nthe topic of the bill. The committee\ndebates, revises and votes on the \nbill.", width/2, height/2);
+    }
+    if(language === "Spanish"){
+    textSize(39);
+    text("Luego, el proyecto de ley se envía \na un comité que se ocupa de la \nmisma rama en la que se presentó el \nproyecto de ley, así como el tema del \nproyecto de ley. El comité debate,\n revisa y vota el proyecto de ley.", width/2, height/2);
+    }
+    if(language === "French"){
+    textSize(39);
+    text("Ensuite, le projet de loi est envoyé \nà un comité qui traite de la même \nbranche dans laquelle le projet \nde loi a été déposé, ainsi que de \nl'objet du projet de loi. Le comité \ndébat, examine et vote le projet de loi.", width/2, height/2);
+    }
+};
+var drawScene4 = function(){
+    currentScene = 4;
+    background(84, 193, 217);
+ fill(0, 0, 0);
+    if(language === "English"){
+    textSize(39);
+    text("The bill is then debated, revised and \nvoted on in the House of \nRepresentatives. They have \nthree methods of voting. Viva Voce\n(voice vote), Divison (standing vote),\nor Recorded (electronic vote). If the\nmajority says yes, it is sent to the\nU.S. Senate.", width/2, height/2);
+    }
+    if(language === "Spanish"){
+    textSize(39);
+    text("El proyecto de ley se debate, revisa y \nvota en la Cámara de \nRepresentantes. Tienen tres métodos \nde votación. Viva Voce (voto de voz), \nDivisión (voto permanente) \no Grabado (voto electrónico). Si la \nmayoría dice que sí, se envía \nal Senado de los EE. UU.", width/2, height/2);
+    }
+  if(language === "French"){
+    textSize(39);
+    text("Le projet de loi est ensuite débattu, \nrévisé et voté à la Chambre des \nreprésentants. Ils ont trois modes de \nvote. Viva Voce (vote vocal), Divison \n(vote permanent) ou Enregistré (vote \nélectronique). Si la majorité dit oui, \nelle est envoyée au Sénat américain.", width/2, height/2);
+    }
+};
+var drawScene5 = function(){
+currentScene = 5;
+ background(84, 193, 217);
+ 
+  fill(255, 255, 255);
+rect(width/2-500/2, height-300, 500, 300);
+rect(width/2-490/2, height-75, 490, 15);
+rect(width/2-475/2, height-65, 475, 15);
+rect(width/2-460/2, height-55, 460, 15);
+rect(width/2-445/2, height-45, 445, 15);
+rect(width/2-430/2, height-35, 430, 15);
+rect(width/2-415/2, height-25, 415, 15);
+rect(width/2-400/2, height-15, 400, 15);
+rect(width/2-375/2, height-5, 375, 15);
+rect(width/2-215, height/2-90/2, 155, 45);
+rect(width/2+215, height/2-90/2, -155, 45);
+triangle(width/2+-235, height/2+0, width/2+235, height/2+0, width/2+0, height/2-75);
+fill(194, 194, 194);
+ellipse(width/2, height/2+-35, 50, 50);
+rect(width/2-105, height/2+0, 50, 225);
+rect(width/2+55, height/2+0, 50, 225);
+rect(width/2-195, height/2+0, 50, 225);
+rect(width/2+145, height/2+0, 50, 225);
+fill(133,94,66);
+rect(width/2-50/2, height/2+130, 50, 95);
+fill(107, 76, 55);
+rect(width/2-10/2, height/2+130, 10, 95);
+rect(width/2-50/2, height/2+175, 50, 10);
+fill(204, 194, 0);
+ellipse(width/2+20, height/2+180, 5, 5);
+fill(0, 0, 0);
+rect(width/2-250, height-75, 15, 75);
+rect(width/2-240, height-60, 15, 60);
+rect(width/2-230, height-45, 15, 45);
+rect(width/2-220, height-30, 15, 30);
+rect(width/2-210, height-15, 15, 15);
+rect(width/2-200, height-5, 15, 5);
+
+rect(width/2+235, height-75, 15, 75);
+rect(width/2+225, height-60, 15, 60);
+rect(width/2+215, height-45, 15, 45);
+rect(width/2+205, height-30, 15, 30);
+rect(width/2+195, height-15, 15, 15);
+rect(width/2+185, height-5, 15, 5);
+
+if(language === "English"){
+textSize(39);
+text("When a bill makes it to the U.S Senate,\nthe Senate has to go through the\nsame process the House Of\nRepresentatives did. They then vote\nand debate on it, and it the majority\nof senators votes for the bill, the bill\nmakes it way to the White House\nfor the President to sign.", width/2, height/2);
+}
+if(language === "Spanish"){
+textSize(39);
+text("Cuando un proyecto de ley llega al \nSenado de los EE. UU., El Senado \ntiene que pasar por el mismo \nproceso que hizo la Cámara de \nRepresentantes. Luego votan y \ndebaten al respecto, y si la mayoría \nde los senadores vota por \nel proyecto de ley, el proyecto de ley \nllega a la Casa Blanca para \nque lo firme el Presidente.", width/2, height/2);
+}
+if(language === "French"){
+textSize(39);
+text("Lorsqu'un projet de loi parvient au \nSénat américain, le Sénat doit suivre \nle même processus que la Chambre \ndes représentants. Ils votent et \ndébattent ensuite, et si la majorité \ndes sénateurs votent pour le projet de \nloi, le projet de loi se rend à la Maison \nBlanche pour que \nle président le signe.", width/2, height/2);
+}
+
+};
+var drawScene6 = function(){
+currentScene = 6;
+background(84, 193, 217);
+pushMatrix();
+rotate(45);
+textSize(300);
+fill(255, 0, 0, 150);
+noFill();
+strokeWeight(10);
+stroke(255, 0, 0, 150);
+rect(width/2+-222, height/2-417, 666, 268);
+text("VETO", width/2+116, height/2-284);
+strokeWeight(1);
+stroke(0, 0, 0);
+popMatrix();
+fill(0, 0, 0);
+if(language === "English"){
+    textSize(39);
+    text("The President now has three options.\nThey can either sign the bill into a\nlaw, or veto the bill (refuse to sign), or\ndo nothing (pocket veto; if congress\nis not in session for ten days. If it is,\nthen the bill is signed into a law). If\nthe President vetoes a bill, it is sent\nback to Congress, where a two thirds\nvote can  override the veto.", width/2, height/2);
+}
+if(language === "Spanish"){
+    textSize(35);
+    text("El Presidente ahora tiene tres \nopciones: puede firmar el proyecto \nde ley en una ley, o vetar el \nproyecto de ley (negarse a firmar) \no no hacer nada (veto de bolsillo; si \nel congreso no está en sesión \ndurante diez días. Si es así, entonces \nel proyecto de ley está firmado \nen una ley). Si el presidente \nveta un proyecto de ley, se envía \nde regreso al Congreso, donde un voto \nde dos tercios puede anular el veto.", width/2, height/2);
+}
+if(language === "French"){
+    textSize(37);
+    text("Le président a désormais trois options: \nil peut soit signer le projet de loi, \nsoit opposer son veto au projet de loi\n (refuser de signer), soit ne rien faire \n(veto de poche; si le congrès ne \nsiège pas pendant dix jours. Si tel est le \ncas, alors le projet de loi est signé \ndans une loi). Si le président met son \nveto à un projet de loi, il est renvoyé au \nCongrès, où un vote des deux tiers peut \nannuler le veto.", width/2, height/2);
+}
+
+};
+var drawScene7 = function(){
+currentScene = 7;
+fill(255, 0, 0);
+textSize(100);
+if(language === "English"){
+text("--THE END--", width/2, height/2);
+}
+if(language === "Spanish"){
+text("--EL FIN--", width/2, height/2);
+}
+if(language === "French"){
+text("--LA FIN--", width/2, height/2);
+}
+};
+
+
+
+draw = function() {
+background(146, 157, 158);
+textAlign(CENTER, CENTER);
+if(clickt === 0){
+    timer = 0;
+}
+if(clickt === 1){
+    timer += 0.5;
+}
+
+if(scene === 0){
+fill(b1r, b1g, b1b);
+rect(width/2-150/2-200, height/2-60/2, 150, 60, 20);
+fill(b2r, b2g, b2b);
+rect(width/2-150/2, height/2-60/2, 150, 60, 20);
+fill(b3r, b3g, b3b);
+rect(width/2-150/2+200, height/2-60/2, 150, 60, 20);
+fill(0, 0, 0);
+textFont(f, 50);
+text("Select Language:", width/2, height/2-150);
+textFont(f, 30);
+fill(55, 60, 61);
+text("English",width/2-200, height/2);
+text("Español",width/2, height/2);
+text("Français",width/2+200, height/2);
+textFont(f, 15);
+fill(46, 45, 46);
+text("Programmed by Julian Dominguez", width-width+110, height-10);
+}
+if(scene === 1 && language === "English"){
+textFont(f, 50);
+fill(0, 0, 0);
+text("How a Bill Becomes a Law", width/2, height/2-100); 
+fill(b2r, b2g, b2b);
+rect(width/2-150/2, height/2-60/2, 150, 60, 20);
+fill(0, 0, 0);
+text("Start",width/2, height/2);
+}
+if(scene === 1 && language === "Spanish"){
+textFont(f, 33.5);
+fill(b2r, b2g, b2b);
+rect(width/2-150/2, height/2-60/2, 150, 60, 20);
+fill(0, 0, 0);
+text("Cómo un proyecto de ley se convierte en ley", width/2, height/2-100); 
+text("Empezar",width/2, height/2);
+}
+if(scene === 2){
+drawScene1();
+drawButton();
+bright += 2;
+line1 += 1;
+if(line1 >= 185){
+    line1 = 100;
+}
+if(bright >= 285){
+    bright = 100;
+}
+}
+if(scene === 3){
+drawScene2();
+drawButton();
+}
+if(scene === 4){
+drawScene3();
+drawButton();
+}
+if(scene === 5){
+drawScene4();
+drawButton();
+}
+if(scene === 6){
+drawScene5();
+drawButton();
+}
+if(scene === 7){
+drawScene6();
+drawButton();
+}
+if(scene === 8){
+drawScene7();
+drawButton();
+}
+if(scene === 1 && language === "French"){
+textFont(f, 35);
+fill(0, 0, 0);
+text("Comment un projet de loi devient une loi", width/2, height/2-100); 
+
+fill(b2r, b2g, b2b);
+rect(width/2-150/2, height/2-60/2, 150, 60, 20);
+fill(0, 0, 0);
+text("Début",width/2, height/2);
+}
+if(mouseX >= width/2-150/2-200 && mouseX <= width/2-150/2-200+150 && mouseY >= height/2-60/2 && mouseY <= height/2-60/2+60){
+    b1r = 175;
+    b1g = 175;
+    b1b = 175;
+} else{
+    b1r = 243;
+    b1g = 227;
+    b1b = 103;
+}
+if(mouseX >= width/2-150/2 && mouseX <= width/2-150/2+150 && mouseY >= height/2-60/2 && mouseY <= height/2-60/2+60){
+    b2r = 175;
+    b2g = 175;
+    b2b = 175;
+} else{
+    b2r = 243;
+    b2g = 227;
+    b2b = 103;
+}
+if(mouseX >= width/2-150/2+200 && mouseX <= width/2-150/2+200+150 && mouseY >= height/2-60/2 && mouseY <= height/2-60/2+60){
+    b3r = 175;
+    b3g = 175;
+    b3b = 175;
+} else{
+    b3r = 243;
+    b3g = 227;
+    b3b = 103;
+}
+};
+mouseClicked = function(){
+if(mouseX >= width/2-150/2-200 && mouseX <= width/2-150/2-200+150 && mouseY >= height/2-60/2 && mouseY <= height/2-60/2+60 && scene === 0){
+    language = "English";
+    scene += 1;
+    clickt += 1;
+}
+if(mouseX >= width/2-150/2 && mouseX <= width/2-150/2+150 && mouseY >= height/2-60/2 && mouseY <= height/2-60/2+60 && scene === 0){
+    language = "Spanish";
+    scene += 1;
+    clickt += 1;
+}
+if(mouseX >= width/2-150/2+200 && mouseX <= width/2-150/2+200+150 && mouseY >= height/2-60/2 && mouseY <= height/2-60/2+60 && scene === 0){
+    language = "French";
+    scene += 1;
+    clickt += 1;
+}
+if(mouseX >= width/2-150/2 && mouseX <= width/2-150/2+150 && mouseY >= height/2-60/2 && mouseY <= height/2-60/2+60 && scene === 1 && timer >= 1){
+    scene += 1;
+    clickt -= 1;
+}
+    if (mouseX >= width-75 && mouseX <= width-75+50 && mouseY >= height-height+10 && mouseY < height-height+10+25 && scene === 2 ) {
+        if (currentScene === 1) {
+            scene +=1;
+        }
+        drawButton();
+    }
+        if (mouseX >= width-75 && mouseX <= width-75+50 && mouseY >= height-height+10 && mouseY < height-height+10+25 && scene === 3) {
+        if (currentScene === 2) {
+            scene +=1;
+        }
+        drawButton();
+    }
+    if (mouseX >= width-75 && mouseX <= width-75+50 && mouseY >= height-height+10 && mouseY < height-height+10+25 && scene === 4 ) {
+        if (currentScene === 3) {
+            scene +=1;
+        }
+        drawButton();
+    }
+        if (mouseX >= width-75 && mouseX <= width-75+50 && mouseY >= height-height+10 && mouseY < height-height+10+25 && scene === 5) {
+        if (currentScene === 4) {
+            scene +=1;
+        }
+        drawButton();
+    }
+ if (mouseX >= width-75 && mouseX <= width-75+50 && mouseY >= height-height+10 && mouseY < height-height+10+25 && scene === 6) {
+        if (currentScene === 5) {
+            scene +=1;
+        }
+        drawButton();
+    }
+    if (mouseX >= width-75 && mouseX <= width-75+50 && mouseY >= height-height+10 && mouseY < height-height+10+25 && scene === 7) {
+        if (currentScene === 6) {
+            scene +=1;
+        }
+        drawButton();
+    }
+    if (mouseX >= width-75 && mouseX <= width-75+50 && mouseY >= height-height+10 && mouseY < height-height+10+25 && scene === 8) {
+        if (currentScene === 7) {
+            scene = 2;
+        }
+        drawButton();
+    }
+};
+
+
+            }
+        }; 
+    }};
+    var canvas = document.getElementById("mycanvas"); 
+    var processingInstance = new Processing(canvas, sketchProc); 
+ </script>
+
+</html>
